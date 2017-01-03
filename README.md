@@ -1,5 +1,5 @@
 # wp-formidable-twilio-sms
-Send SMS/text messages with Formidable Pro and Twilio
+Send SMS/text messages with Formidable Forms and Twilio
 
 This plugin enables you to send a text message every time a user submits a Formidable Pro form via Twilio.
 
