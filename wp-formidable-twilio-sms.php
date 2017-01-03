@@ -142,7 +142,7 @@ function send_sms_via_twilio( $entry_id, $form_id ){
 	
 	
 	// sending owner a text as well?
-	if( ! empty($sms_msg_owner) ){
+	if( ! empty($sms_msg_owner)  && ! empty($sms_mobile_cc)){
 		// assign sender, receiver and text message
 		$from = $sms_mobile; // twilio's account phone number
 		$to = $sms_mobile_cc; // owner's mobile number from options page
