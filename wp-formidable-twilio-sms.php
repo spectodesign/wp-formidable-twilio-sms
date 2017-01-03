@@ -55,7 +55,17 @@ function send_sms_via_twilio( $entry_id, $form_id ){
 		return;
 	} else {
 		send_sms_via_twilio_logger($wp_formidable_twilio_sms_debug, 'sms_mobile_number: '.$sms_mobile_number, $wp_formidable_twilio_sms_error_log_path);
-		// do we need to check if number starts with digit 1 ?
+		// only leave numbers
+		$sms_mobile_number = preg_replace("/[^0-9]/", '', $sms_mobile_number);
+		// remove a possible leading 1 
+		if (strlen($sms_mobile_number) == 11) $sms_mobile_number = preg_replace("/^1/", '',$sms_mobile_number);
+		// if we have 10 digits left, it's probably valid.
+		if (strlen($sms_mobile_number) == 10) {
+			send_sms_via_twilio_logger($wp_formidable_twilio_sms_debug, 'sms_mobile_number: '.$sms_mobile_number, $wp_formidable_twilio_sms_error_log_path);
+		} else {
+			send_sms_via_twilio_logger($wp_formidable_twilio_sms_debug, 'not valid US phone number --> sms_mobile_number: '.$sms_mobile_number, $wp_formidable_twilio_sms_error_log_path);
+			return;
+		}  
 		
 	}
   
